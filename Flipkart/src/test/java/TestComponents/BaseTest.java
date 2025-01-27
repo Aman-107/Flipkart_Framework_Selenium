@@ -1,0 +1,19 @@
+package TestComponents;
+
+import java.time.Duration;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class BaseTest {
+
+	public static ChromeDriver invokeDriver() {
+		
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--incognito");
+		ChromeDriver driver = new ChromeDriver(options);
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		return driver;
+	}
+}

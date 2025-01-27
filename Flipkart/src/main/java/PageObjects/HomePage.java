@@ -1,0 +1,35 @@
+package PageObjects;
+
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import AbstractComponents.AbstractComponents;
+
+public class HomePage extends AbstractComponents {
+
+	WebDriver driver;
+	
+	@FindBy(name="q")
+	WebElement searchBox;
+	
+	@FindBy(xpath="//span[text()='Filters']")
+	WebElement filtersHeader;
+	
+	public HomePage(ChromeDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver,this);
+	}
+
+	public void landingPage() {
+		driver.get("https://www.flipkart.com/");
+	}
+	
+	public void searchBox() {
+		searchBox.sendKeys("Laptops",Keys.ENTER);
+		visibilityOf(filtersHeader);
+	}
+}

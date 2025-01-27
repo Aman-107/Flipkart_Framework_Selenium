@@ -1,0 +1,30 @@
+package PageObjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import AbstractComponents.AbstractComponents;
+
+public class SearchPage extends AbstractComponents {
+
+	@FindBy(xpath="//span[text()='Filters']")
+	WebElement filtersHeader;
+	
+	@FindBy(xpath="//div[text()='Brand']")
+	WebElement brandFilter;
+	
+	@FindBy(xpath="(//div[contains(@class,'KvHRYS')])[1]")
+	WebElement moreBrands;
+	
+	@FindBy(css="div[title='HP']")
+	WebElement brandElement;
+	
+	public void brandsFilter() {
+		brandFilter.click();
+		moreBrands.click();
+		brandElement.click();
+		//Thread.sleep(1000);
+	}
+	
+}

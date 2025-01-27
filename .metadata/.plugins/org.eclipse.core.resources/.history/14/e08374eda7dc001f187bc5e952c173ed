@@ -1,0 +1,44 @@
+package PageObjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
+
+import AbstractComponents.AbstractComponents;
+
+public class SearchPage extends AbstractComponents {
+
+	@FindBy(xpath="//span[text()='Filters']")
+	WebElement filtersHeader;
+	@FindBy(xpath="//div[text()='Brand']")
+	WebElement brandFilter;
+	@FindBy(xpath="(//div[contains(@class,'KvHRYS')])[1]")
+	WebElement moreBrands;
+	@FindBy(css="div[title='HP']")
+	WebElement brandElement;
+	
+	@FindBy(css="div[class='suthUA'] select[class='Gn+jFg']")
+	WebElement minPrice;
+	@FindBy(css="div[class='tKgS7w'] select[class='Gn+jFg']")
+	WebElement maxPrice;
+	
+	public void brandsFilter() throws InterruptedException {
+		brandFilter.click();
+		moreBrands.click();
+		brandElement.click();
+		threadSleep();
+	}
+	
+	public void priceFilter() {
+		
+	}
+}
+/*
+Select minPrice = new Select(driver.findElement(By.cssSelector("div[class='suthUA'] select[class='Gn+jFg']"))); //range filter
+		minPrice.selectByValue("75000");
+		
+		Select maxPrice = new Select(driver.findElement(By.cssSelector("div[class='tKgS7w'] select[class='Gn+jFg']")));
+		maxPrice.selectByVisibleText("₹75000+");
+		Thread.sleep(1000);
+*/

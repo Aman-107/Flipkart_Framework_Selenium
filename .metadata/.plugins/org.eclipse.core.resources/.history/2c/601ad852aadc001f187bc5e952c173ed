@@ -1,0 +1,52 @@
+package PageObjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
+
+import AbstractComponents.AbstractComponents;
+
+public class SearchPage extends AbstractComponents {
+
+	@FindBy(xpath="//span[text()='Filters']")
+	WebElement filtersHeader;
+	@FindBy(xpath="//div[text()='Brand']")
+	WebElement brandFilter;
+	@FindBy(xpath="(//div[contains(@class,'KvHRYS')])[1]")
+	WebElement moreBrands;
+	@FindBy(css="div[title='HP']")
+	WebElement brandElement;
+	
+	@FindBy(css="div[class='suthUA'] select[class='Gn+jFg']")
+	WebElement minPricedp;
+	@FindBy(css="div[class='tKgS7w'] select[class='Gn+jFg']")
+	WebElement maxPricedp;
+	
+	
+	public void brandsFilter() throws InterruptedException {
+		brandFilter.click();
+		moreBrands.click();
+		brandElement.click();
+		threadSleep();
+	}
+	
+	public void priceFilter(String userminPrice, String usermaxPrice) throws InterruptedException {
+		Select minPrice = new Select(minPricedp);
+		minPrice.selectByValue(userminPrice);
+		
+		Select maxPrice = new Select(maxPricedp);
+		maxPrice.selectByVisibleText(usermaxPrice);
+		threadSleep();
+	}
+
+	public void customerRatingFilter(int userrating) throws InterruptedException {
+		rating.click();
+		threadSleep();
+	}
+}
+
+/*
+	
+	
+*/

@@ -1,0 +1,11 @@
+package PageObjects;
+
+public class HomePage {
+
+	WebDriver driver;
+	
+	public void landingPage() {
+		driver.get("https://www.flipkart.com/");
+	}
+	
+}

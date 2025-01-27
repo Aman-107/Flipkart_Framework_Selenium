@@ -1,0 +1,83 @@
+package TestCases;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class Basic {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--incognito");
+		ChromeDriver driver = new ChromeDriver(options);
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		
+		driver.get("https://www.flipkart.com/");
+		driver.findElement(By.name("q")).sendKeys("Laptops",Keys.ENTER);
+		
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//span[text()='Filters']"))));
+		
+		//wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//div[text()='Brand']"))));
+		driver.findElement(By.xpath("//div[text()='Brand']")).click();//brands
+		
+		driver.findElement(By.xpath("(//div[contains(@class,'KvHRYS')])[1]")).click(); // more brand
+		driver.findElement(By.cssSelector("div[title='HP']")).click();
+		Thread.sleep(1000);
+		
+		//wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div[class='suthUA'] select[class='Gn+jFg']"))));
+		Select minPrice = new Select(driver.findElement(By.cssSelector("div[class='suthUA'] select[class='Gn+jFg']"))); //range filter
+		minPrice.selectByValue("75000");
+		Select maxPrice = new Select(driver.findElement(By.cssSelector("div[class='tKgS7w'] select[class='Gn+jFg']")));
+		maxPrice.selectByVisibleText("₹75000+");
+		Thread.sleep(1000);
+		
+		// Customer Ratings
+		//wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//div[contains(@title,'3')]"))));
+		driver.findElement(By.xpath("//div[contains(@title,'3★')]")).click();
+		Thread.sleep(1000);
+		
+		// Price high to low
+		//wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//div[text()='Price -- High to Low']"))));
+		driver.findElement(By.xpath("//div[text()='Price -- High to Low']")).click();
+		Thread.sleep(1000);
+		
+		// Applied Filters
+		List<WebElement> filtersApplied = driver.findElements(By.cssSelector(".YcSYyC"));
+		
+		List<WebElement> prices = driver.findElements(By.cssSelector(".Nx9bqj._4b5DiR"));
+		
+		List<WebElement> ratings = driver.findElements(By.cssSelector(".XQDdHH"));
+		for(int i=1; i<=ratings.size(); i++) {
+			double pdtRating = Double.parseDouble((driver.findElement(By.xpath("(//div[@class='XQDdHH'])["+i+"]")).getText()));
+			System.out.println(pdtRating);
+		}
+		
+		driver.close();
+	}
+
+}
+
+
+/*  ### **Scenario 2: Validate Search Functionality with Filters**  
+**Steps:**  
+1. Search for a product category (e.g., "Laptops").  
+2. Apply filters (e.g., brand, price range, customer ratings).  
+3. Verify that the results reflect the selected filters.  
+4. Sort the products by price (low to high).  
+
+**Validation Points:**  
+- Filters are applied correctly.  
+- Sorting works as expected.  
+- Product details match the filter criteria.   */
