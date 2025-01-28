@@ -6,79 +6,80 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
+import PageObjects.CartPage;
+import PageObjects.Headers;
 import PageObjects.HomePage;
 import PageObjects.SearchPage;
 import TestComponents.BaseTest;
+import Utilities.WindowHandler;
 
 public class Optimised_Code extends BaseTest {
 
-	public static void main(String[] args) throws InterruptedException {
-		// TODO Auto-generated method stub
+	ChromeDriver driver = invokeDriver();
+	HomePage homePage = new HomePage(driver);
+	SearchPage searchPage = new SearchPage(driver);
+	WindowHandler windowHandler = new WindowHandler(driver);
+	Headers headers = new Headers(driver);
+	CartPage cartPage = new CartPage(driver);
+	
 
-		ChromeDriver driver = invokeDriver();
-
+	@Test
+	public void Search_Functionality_Filters() throws InterruptedException {
+		
 		double queryRating = 3.0;
 		int castRating = (int) queryRating;
-
-		HomePage homePage = new HomePage(driver);
+		
 		homePage.landingPage();
 		homePage.searchBox();
 
-		SearchPage searchPage = new SearchPage(driver);
 		searchPage.brandsFilter();
 		searchPage.priceFilter("50000", "₹75000+");
 		searchPage.customerRatingFilter(castRating); // Customer Ratings
 		searchPage.sorting(); // Price high to low
-
-		// Applied Filters
-		List<WebElement> filtersApplied = driver.findElements(By.cssSelector(".YcSYyC"));
-		for(int i=0; i<filtersApplied.size(); i++) {
-			System.out.println(driver.findElements(By.cssSelector(".YcSYyC")).get(i).getText());
-		}
-
-		// Pricing Order Verification
-		List<WebElement> prices = driver.findElements(By.cssSelector(".Nx9bqj._4b5DiR"));
-		for (int i = 1; i <= prices.size(); i++) {
-			String rawPrice = driver.findElement(By.cssSelector(".Nx9bqj._4b5DiR")).getText().split("₹")[1]; // System.out.println(rawPrice);
-			int compaPrice = 0;
-			int price = Integer.parseInt(rawPrice.replace(",", "")); // System.out.println(price);
-			
-			if(compaPrice > price) {
-				System.out.println("sorting not working at:" + driver.findElement(By.xpath("(//div[@class='KzDlHZ'])[" + i + "]")).getText());
-			}
-		}
+		searchPage.appliedFilter(); // Applied Filters
+		searchPage.priceSorting(); // Pricing Order Verification
 		
-		// Ratings Verification
-		List<WebElement> ratings = driver.findElements(By.cssSelector(".XQDdHH"));
-		for (int i = 1; i <= ratings.size(); i++) {
-			double pdtRating = Double
-					.parseDouble((driver.findElement(By.xpath("(//div[@class='XQDdHH'])[" + i + "]")).getText()));
+	List<WebElement> ratings = driver.findElements(By.cssSelector(".XQDdHH")); // total products in the page
+			// Ratings Verification
+		for (int i = 1; i <=ratings.size(); i++) {
+		double pdtRating = Double.parseDouble((driver.findElement(By.xpath("(//div[@class='XQDdHH'])[" + i + "]")).getText()));
 			if (pdtRating < queryRating) {
 				System.out.println(driver.findElement(By.xpath("(//div[@class='KzDlHZ'])[" + i + "]")).getText());
 			}
-		//	System.out.println(pdtRating);
-		}
-
-		// sorting verification
-		String expectedSort = driver.findElement(By.cssSelector(".zg-M3Z._0H7xSG")).getText();
-		Assert.assertEquals(expectedSort, "Price -- High to Low");
-
-		 driver.close();
+				}
+				// sorting verification
+				String expectedSort = driver.findElement(By.cssSelector(".zg-M3Z._0H7xSG")).getText();
+				Assert.assertEquals(expectedSort, "Newest First");
 	}
+	
+	
+	@Test
+	public void addingMultipleProductsCart() throws InterruptedException {
+         driver.get("https://www.flipkart.com/search?q=Laptops&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&p%5B%5D=facets.price_range.from%3D50000&p%5B%5D=facets.price_range.to%3DMax&p%5B%5D=facets.brand%255B%255D%3DHP&p%5B%5D=facets.rating%255B%255D%3D3%25E2%2598%2585%2B%2526%2Babove&sort=price_desc");
+		   
+		windowHandler.parentChildWinowHandles("221007",3);
+		windowHandler.closeAllWindowExceptMain();
+		headers.cartPage();
+		
+		String actualPrice = cartPage.priceCal();
+		String expectedPrice = cartPage.totalAmount();
+		Assert.assertEquals(actualPrice, expectedPrice);
+		
+		cartPage.removeProducts(1);
+		actualPrice = cartPage.priceCal();
+		expectedPrice = cartPage.totalAmount();
+		Assert.assertEquals(actualPrice, expectedPrice);
+		
+		}
+	
+ }	
+		// Clean up
+		// driver.quit();
 
-}
 
 /*
- * ### **Scenario 2: Validate Search Functionality with Filters
- * ** Steps:** 
- * 1.Search for a product category (e.g., "Laptops"). 
- * 2. Apply filters (e.g.,brand, price range, customer ratings). 
- * 3. Verify that the results reflect the selected filters. 
- * 4. Sort the products by price (low to high).
- ** 
- * Validation Points:** 
- * - Filters are applied correctly. 
- * - Sorting works as expected. 
- * - Product details match the filter criteria.
+
+ *
  */

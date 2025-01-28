@@ -1,5 +1,7 @@
 package PageObjects;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +15,10 @@ import AbstractComponents.AbstractComponents;
 public class SearchPage extends AbstractComponents {
 
 	WebDriver driver;
+	public SearchPage(ChromeDriver driver) {
+		this.driver=driver;
+		PageFactory.initElements(driver, this);
+	}
 	
 	@FindBy(xpath="//span[text()='Filters']")
 	WebElement filtersHeader;
@@ -27,16 +33,35 @@ public class SearchPage extends AbstractComponents {
 	WebElement minPricedp;
 	@FindBy(css="div[class='tKgS7w'] select[class='Gn+jFg']")
 	WebElement maxPricedp;
-	
-	@FindBy(xpath="//div[text()='Price -- High to Low']")
+	@FindBy(xpath="//div[text()='Newest First']")
 	WebElement sorting;
 	
+	@FindBy(css=".XQDdHH")
+	List<WebElement> ratings;
+	@FindBy(css=".YcSYyC")
+	List<WebElement> filtersApplied;
+	@FindBy(css=".Nx9bqj._4b5DiR")
+	List<WebElement> prices;
+	@FindBy(xpath="//div[@class='KzDlHZ']")
+	List<WebElement> pdtsName;
 	
-	public SearchPage(ChromeDriver driver) {
-		this.driver=driver;
-		PageFactory.initElements(driver, this);
+	public void priceSorting() {
+		for (int i = 0; i < prices.size(); i++) {
+			String rawPrice = prices.get(i).getText().split("₹")[1];
+			int compaPrice = 0;
+			int price = Integer.parseInt(rawPrice.replace(",", ""));
+			if(compaPrice > price) {
+				System.out.println("sorting not working at:" + pdtsName.get(i).getText());
+				}
+		}
 	}
-
+	
+	public void appliedFilter() {
+		for(int i=0; i<filtersApplied.size(); i++) {
+			System.out.println(filtersApplied.get(i).getText());
+		}
+	}
+	
 	public void brandsFilter() throws InterruptedException {
 		brandFilter.click();
 		moreBrands.click();

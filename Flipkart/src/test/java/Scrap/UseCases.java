@@ -1,16 +1,46 @@
 package Scrap;
 
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+
 public class UseCases {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Double queryRating = (double) 3;
-		System.out.println(queryRating);
+//		Double queryRating = (double) 3;
+//		System.out.println(queryRating);
+//		
+//		double d = 4.8;
+//		int i = (int) d;
+//		System.out.println(i);
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--incognito");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		
-		double d = 4.8;
-		int i = (int) d;
-		System.out.println(i);
+		driver.get("https://www.flipkart.com/search?q=Laptops&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&p%5B%5D=facets.price_range.from%3D50000&p%5B%5D=facets.price_range.to%3DMax&p%5B%5D=facets.brand%255B%255D%3DHP&p%5B%5D=facets.rating%255B%255D%3D3%25E2%2598%2585%2B%2526%2Babove&sort=price_desc");
+		
+		List<WebElement> click = driver.findElements(By.xpath("//a[@class='CGtC98']"));
+		
+		for (int i = 1; i <= 5; i++) {	
+			WebElement move =click.get(i);
+			move.sendKeys(Keys.chord(Keys.CONTROL,Keys.RETURN));
+			 
+			 System.out.println("Number of open tabs: " + driver.getWindowHandles().size());
+			//			Actions action = new Actions(driver);
+//			action.moveToElement(move).sendKeys(Keys.CONTROL,Keys.ENTER);
+			
+		}
 		
 		
 		/*

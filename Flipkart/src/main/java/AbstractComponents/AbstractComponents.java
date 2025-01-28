@@ -16,6 +16,11 @@ public class AbstractComponents {
 		wait.until(ExpectedConditions.visibilityOf(by));
 	}
 	
+	public void invisibilityOf(WebElement by) {
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.invisibilityOf(by));
+	}
+	
 	public void threadSleep() throws InterruptedException {
 		Thread.sleep(1000);
 	}
