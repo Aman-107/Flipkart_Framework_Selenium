@@ -38,7 +38,7 @@ public class Headers extends AbstractComponents {
 	
 	public void wishList(String pdts) throws InterruptedException {       
 		wishList.click();
-		wishListPage.wishListItems(pdts);		
+		wishListPage.wishListItemstoCart(pdts);		
 	}
   	
 	public void profileHover() throws InterruptedException {

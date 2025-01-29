@@ -30,15 +30,19 @@ public class WishListPage extends AbstractComponents {
 
     @FindBy(css="._16cbFU")
     private List<WebElement> wishlistItems;
-
-    public void wishListItems(String pdts) throws InterruptedException {
+    @FindBy(css=".Mj62aK")
+    private List<WebElement> deleteIcon;
+    @FindBy(css=".QqFHMw.AyekA8")
+    private WebElement yesRemove; 
+    
+    public void wishListItemstoCart(String pdts) throws InterruptedException {
         driver.navigate().refresh();
 
         // Avoid StaleElementException by re-fetching elements
         List<WebElement> items = wishlistItems;
 
         for (WebElement item : items) {
-        	System.out.println(item.getText());
+        	//System.out.println(item.getText());
             if (item.getText().toLowerCase().contains(pdts)) {
                 System.out.println(item.getText());
                 item.click();
@@ -49,4 +53,21 @@ public class WishListPage extends AbstractComponents {
             }
         }
     }
+    
+    public void wishListItemsDelete(String pdts) {
+    	
+    	for(int i=0; i<wishlistItems.size();i++) {
+    		System.out.println(wishlistItems.get(i).getText());
+    		if(wishlistItems.get(i).getText().toLowerCase().contains(pdts)) {
+    			wishlistItems.get(i).getText();
+    			deleteIcon.get(i).click();
+    			visibilityOf(yesRemove);
+    			yesRemove.click();
+    			visibilityOf(userName);
+    		}
+    	}
+    	
+    }
+    
+
 }

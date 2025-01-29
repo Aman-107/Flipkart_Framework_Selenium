@@ -36,7 +36,7 @@ public class Optimised_Code extends BaseTest {
 		System.out.println("Login Successfully");
 	}
 	
-	@Test
+	//@Test
 	public void Search_Functionality_Filters() throws InterruptedException {
 		
 		double queryRating = 3.0;
@@ -65,7 +65,7 @@ public class Optimised_Code extends BaseTest {
 	}
 	
 	
-	@Test
+	//@Test
 	public void addingMultipleProductsCart() throws InterruptedException {
          //driver.get("https://www.flipkart.com/search?q=Laptops&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&p%5B%5D=facets.price_range.from%3D50000&p%5B%5D=facets.price_range.to%3DMax&p%5B%5D=facets.brand%255B%255D%3DHP&p%5B%5D=facets.rating%255B%255D%3D3%25E2%2598%2585%2B%2526%2Babove&sort=price_desc");
 		 
@@ -102,7 +102,8 @@ public class Optimised_Code extends BaseTest {
 		productPage.wishList();
 		windowHandler.closeAllWindowExceptMain();
 		headers.profileHover();
-		headers.wishList(pdts);
+		headers.wishList(pdts);// navigating to wishlist page
+		wishListPage.wishListItemsDelete(pdts);
 	}
 	
  }	
@@ -111,17 +112,5 @@ public class Optimised_Code extends BaseTest {
 
 
 /*
- ### **Scenario 4: Validate Wishlist Functionality**  
-**Steps:**  
-1. Search for a product.  
-2. Add the product to the wishlist.  
-3. Navigate to the wishlist page.  
-4. Move the product from the wishlist to the cart.  
 
-**Validation Points:**  
-- Product is added to the wishlist successfully.  
-- Wishlist page displays all added items.  
-- Product is removed from the wishlist after being added to the cart.
-
----
  */

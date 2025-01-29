@@ -5,7 +5,6 @@
     <classes>
       <class name="TestCases.Optimised_Code">
         <methods>
-          <include name="addingMultipleProductsCart"/>
           <include name="wishlistFunctionality"/>
         </methods>
       </class> <!-- TestCases.Optimised_Code -->
