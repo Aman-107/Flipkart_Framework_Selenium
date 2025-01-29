@@ -1,5 +1,6 @@
 package TestCases;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -8,9 +9,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import Cookies.LoadCookies;
 import PageObjects.CartPage;
 import PageObjects.Headers;
 import PageObjects.HomePage;
+import PageObjects.ProductPage;
 import PageObjects.SearchPage;
 import TestComponents.BaseTest;
 import Utilities.WindowHandler;
@@ -23,16 +26,22 @@ public class Optimised_Code extends BaseTest {
 	WindowHandler windowHandler = new WindowHandler(driver);
 	Headers headers = new Headers(driver);
 	CartPage cartPage = new CartPage(driver);
+	ProductPage productPage = new ProductPage(driver);
 	
-
-	@Test
+	//@Test
+	public void Login() throws IOException {
+		homePage.landingPage();
+		LoadCookies(driver);
+		System.out.println("Login Successfully");
+	}
+	
+	//@Test
 	public void Search_Functionality_Filters() throws InterruptedException {
 		
 		double queryRating = 3.0;
 		int castRating = (int) queryRating;
 		
-		homePage.landingPage();
-		homePage.searchBox();
+		homePage.searchBox("Laptops");
 
 		searchPage.brandsFilter();
 		searchPage.priceFilter("50000", "₹75000+");
@@ -55,11 +64,18 @@ public class Optimised_Code extends BaseTest {
 	}
 	
 	
-	@Test
+	//@Test
 	public void addingMultipleProductsCart() throws InterruptedException {
          driver.get("https://www.flipkart.com/search?q=Laptops&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&p%5B%5D=facets.price_range.from%3D50000&p%5B%5D=facets.price_range.to%3DMax&p%5B%5D=facets.brand%255B%255D%3DHP&p%5B%5D=facets.rating%255B%255D%3D3%25E2%2598%2585%2B%2526%2Babove&sort=price_desc");
-		   
-		windowHandler.parentChildWinowHandles("221007",3);
+		 
+		for(int i=0; i<3;i++) { // 3 = number of products
+		searchPage.productDetails(i);
+		windowHandler.childWinowHandle();
+		productPage.pincode("221007");
+		productPage.addToCart();
+		driver.close();
+		windowHandler.parentWinowHandle();
+		}
 		windowHandler.closeAllWindowExceptMain();
 		headers.cartPage();
 		
@@ -68,11 +84,22 @@ public class Optimised_Code extends BaseTest {
 		Assert.assertEquals(actualPrice, expectedPrice);
 		
 		cartPage.removeProducts(1);
+		driver.navigate().refresh();
 		actualPrice = cartPage.priceCal();
 		expectedPrice = cartPage.totalAmount();
 		Assert.assertEquals(actualPrice, expectedPrice);
-		
 		}
+	
+	//@Test
+	public void wishlistFunctionality() {
+		homePage.searchBox("Samsung S24 ultra");
+		String pdts = ("S24 ultra").toLowerCase();
+		System.out.println(pdts);
+		searchPage.productSearch(pdts);
+		windowHandler.switchToWindowByIndex(2);
+		//productPage.wishList();
+		
+	}
 	
  }	
 //		 Clean up
@@ -80,4 +107,17 @@ public class Optimised_Code extends BaseTest {
 
 
 /*
+ ### **Scenario 4: Validate Wishlist Functionality**  
+**Steps:**  
+1. Search for a product.  
+2. Add the product to the wishlist.  
+3. Navigate to the wishlist page.  
+4. Move the product from the wishlist to the cart.  
+
+**Validation Points:**  
+- Product is added to the wishlist successfully.  
+- Wishlist page displays all added items.  
+- Product is removed from the wishlist after being added to the cart.
+
+---
  */

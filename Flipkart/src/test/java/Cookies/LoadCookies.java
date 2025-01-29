@@ -1,30 +1,17 @@
-package TestComponents;
+package Cookies;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.time.Duration;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import java.io.*;
 import java.util.StringTokenizer;
 
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+public class LoadCookies {
+    public static void main(String[] args) throws IOException {
+       // System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://www.flipkart.com");
 
-public class BaseTest {
-
-	public static ChromeDriver invokeDriver() {
-		
-		ChromeOptions options = new ChromeOptions();
-		//options.addArguments("--incognito");
-		ChromeDriver driver = new ChromeDriver(options);
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		return driver;
-	}
-	
-	public void LoadCookies(ChromeDriver driver) throws IOException {
-		// Load saved cookies
+        // Load saved cookies
         File file = new File("cookies.data");
         BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
         String line;
@@ -50,6 +37,5 @@ public class BaseTest {
         System.out.println("✅ Flipkart opened with saved session!");
 
       //  driver.quit();
-	}
-	
+    }
 }

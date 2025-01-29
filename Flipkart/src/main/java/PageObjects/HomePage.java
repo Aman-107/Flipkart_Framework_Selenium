@@ -28,8 +28,8 @@ public class HomePage extends AbstractComponents {
 		driver.get("https://www.flipkart.com/");
 	}
 	
-	public void searchBox() {
-		searchBox.sendKeys("Laptops",Keys.ENTER);
+	public void searchBox(String pdts) {
+		searchBox.sendKeys(pdts,Keys.ENTER);
 		visibilityOf(filtersHeader);
 	}
 }

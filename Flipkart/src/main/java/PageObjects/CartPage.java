@@ -12,7 +12,7 @@ import AbstractComponents.AbstractComponents;
 public class CartPage extends AbstractComponents {
 
 	ChromeDriver driver;
-	int sum = 0;
+	
 	
 	@FindBy(xpath="//span[contains(@class,'LAlF6k re6bBo')]")
 	List<WebElement> pdtsPrice;
@@ -34,6 +34,7 @@ public class CartPage extends AbstractComponents {
 	}
 	
 	public String priceCal() {
+		int sum = 0;
 		for(int i=0; i<pdtsPrice.size();i++) {
 			sum += Integer.parseInt(pdtsPrice.get(i).getText().split("₹")[1].replace(",", ""));
 		}
@@ -52,6 +53,7 @@ public class CartPage extends AbstractComponents {
 			//driver.switchTo().frame(removePop);
 			removeConfirm.click();
 			visibilityOf(headerCount);
+			visibilityOf(totalAmt);
 		}
 	}
 }

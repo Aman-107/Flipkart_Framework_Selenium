@@ -45,6 +45,11 @@ public class SearchPage extends AbstractComponents {
 	@FindBy(xpath="//div[@class='KzDlHZ']")
 	List<WebElement> pdtsName;
 	
+	@FindBy(css=".KzDlHZ")
+	List<WebElement> products;
+//	@FindBy(xpath="//a[@class='CGtC98']")
+//    List<WebElement> clickable;
+	
 	public void priceSorting() {
 		for (int i = 0; i < prices.size(); i++) {
 			String rawPrice = prices.get(i).getText().split("₹")[1];
@@ -86,6 +91,21 @@ public class SearchPage extends AbstractComponents {
 	public void sorting() throws InterruptedException {
 		sorting.click();
 		threadSleep();
+	}
+	
+	public void productSearch(String pdts) {
+		for(int i=0; i<products.size(); i++) {
+			if(products.get(i).getText().toLowerCase().contains(pdts)) {
+				products.get(i).click();
+				System.out.println(products.get(i).getText().toLowerCase());
+				break;
+			}
+		}
+	}
+
+	public void productDetails(int pdts) {
+		//int pdt = pdts + 1;
+		pdtsName.get(pdts).click();
 	}
 }
 
