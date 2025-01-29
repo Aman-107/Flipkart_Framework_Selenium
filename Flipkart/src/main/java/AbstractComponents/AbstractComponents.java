@@ -1,7 +1,9 @@
 package AbstractComponents;
 
 import java.time.Duration;
+import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -26,6 +28,11 @@ public class AbstractComponents {
 	public void invisibilityOf(WebElement by) {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.invisibilityOf(by));
+	}
+	
+	public void increasingOf(By by, int size) {
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(by,size));
 	}
 	
 	public void threadSleep() throws InterruptedException {

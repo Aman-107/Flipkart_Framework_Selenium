@@ -5,7 +5,7 @@
     <classes>
       <class name="TestCases.Optimised_Code">
         <methods>
-          <include name="wishlistFunctionality"/>
+          <include name="reviews"/>
         </methods>
       </class> <!-- TestCases.Optimised_Code -->
     </classes>

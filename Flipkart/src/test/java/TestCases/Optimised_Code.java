@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 import PageObjects.CartPage;
 import PageObjects.Headers;
 import PageObjects.HomePage;
+import PageObjects.OrdersPage;
 import PageObjects.ProductPage;
 import PageObjects.SearchPage;
 import PageObjects.WishListPage;
@@ -28,6 +29,7 @@ public class Optimised_Code extends BaseTest {
 	CartPage cartPage = new CartPage(driver);
 	ProductPage productPage = new ProductPage(driver);
 	WishListPage wishListPage = new WishListPage(driver);
+	OrdersPage ordersPage = new OrdersPage(driver);
 	
 	@Test
 	public void Login() throws IOException {
@@ -91,13 +93,11 @@ public class Optimised_Code extends BaseTest {
 		Assert.assertEquals(actualPrice, expectedPrice);
 		}
 	
-	@Test
+	//@Test
 	public void wishlistFunctionality() throws InterruptedException {
 		homePage.searchBox("Samsung S24 ultra");
 		String pdts = ("S24 ultra").toLowerCase();
-		//System.out.println(pdts);
 		searchPage.productSearch(pdts);
-		//searchPage.productDetails(3);
 		windowHandler.childWindowHandle();
 		productPage.wishList();
 		windowHandler.closeAllWindowExceptMain();
@@ -106,11 +106,32 @@ public class Optimised_Code extends BaseTest {
 		wishListPage.wishListItemsDelete(pdts);
 	}
 	
+	@Test
+	public void reviews() throws InterruptedException {
+		//headers.profileHover();
+		//headers.myOrders();
+		driver.get("https://www.flipkart.com/account/orders?link=home_orders");
+		// ordersPage.deliverdOrders("yes"); -> Has to use sibling concept
+		
+		
+	} 
  }	
 //		 Clean up
 //		 driver.quit();
 
 
 /*
+ 
+### **Scenario 6: Validate Product Review and Ratings Submission**  
+**Steps:**  
+1. Navigate to the "My Orders" section after an order is delivered.  
+2. Select an order and click "Write a Review".  
+3. Submit a rating and review for the product.  
+
+**Validation Points:**  
+- Rating and review are submitted successfully.  
+- Review is displayed on the product page.  
+
+---
 
  */

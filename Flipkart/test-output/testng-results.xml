@@ -2,19 +2,19 @@
 <testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-01-29T18:31:53 IST" name="Default suite" finished-at="2025-01-29T18:32:11 IST" duration-ms="17331">
+  <suite started-at="2025-01-29T19:45:45 IST" name="Default suite" finished-at="2025-01-29T19:46:02 IST" duration-ms="16177">
     <groups>
     </groups>
-    <test started-at="2025-01-29T18:31:53 IST" name="Default test" finished-at="2025-01-29T18:32:11 IST" duration-ms="17331">
+    <test started-at="2025-01-29T19:45:45 IST" name="Default test" finished-at="2025-01-29T19:46:02 IST" duration-ms="16177">
       <class name="TestCases.Optimised_Code">
-        <test-method signature="Login()[pri:0, instance:TestCases.Optimised_Code@5b068087]" started-at="2025-01-29T18:31:54 IST" name="Login" finished-at="2025-01-29T18:31:59 IST" duration-ms="5842" status="PASS">
+        <test-method signature="Login()[pri:0, instance:TestCases.Optimised_Code@6f152006]" started-at="2025-01-29T19:45:45 IST" name="Login" finished-at="2025-01-29T19:45:49 IST" duration-ms="3390" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Login -->
-        <test-method signature="wishlistFunctionality()[pri:0, instance:TestCases.Optimised_Code@5b068087]" started-at="2025-01-29T18:31:59 IST" name="wishlistFunctionality" finished-at="2025-01-29T18:32:11 IST" duration-ms="11461" status="PASS">
+        <test-method signature="reviews()[pri:0, instance:TestCases.Optimised_Code@6f152006]" started-at="2025-01-29T19:45:49 IST" name="reviews" finished-at="2025-01-29T19:46:02 IST" duration-ms="12760" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- wishlistFunctionality -->
+        </test-method> <!-- reviews -->
       </class> <!-- TestCases.Optimised_Code -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
