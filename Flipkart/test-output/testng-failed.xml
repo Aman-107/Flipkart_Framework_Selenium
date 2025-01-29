@@ -6,7 +6,6 @@
       <class name="TestCases.Optimised_Code">
         <methods>
           <include name="addingMultipleProductsCart"/>
-          <include name="Search_Functionality_Filters"/>
         </methods>
       </class> <!-- TestCases.Optimised_Code -->
     </classes>

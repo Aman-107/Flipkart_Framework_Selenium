@@ -1,0 +1,20 @@
+package PageObjects;
+
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class CartPage {
+
+	
+	@FindBy(xpath="//span[contains(@class,'LAlF6k re6bBo')]")
+	List<WebElement> pdtsPrice;
+	
+	public void priceCal() {
+		int sum = 0;
+		for(int i=0; i<pdtsPrice.size();i++) {
+			sum += pdtsPrice.get(i).getText();
+		}
+	}
+}

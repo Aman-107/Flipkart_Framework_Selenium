@@ -1,0 +1,74 @@
+package PageObjects;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+
+import AbstractComponents.AbstractComponents;
+
+public class SearchPage extends AbstractComponents {
+
+	WebDriver driver;
+	public SearchPage(ChromeDriver driver) {
+		this.driver=driver;
+		PageFactory.initElements(driver, this);
+	}
+	
+	@FindBy(xpath="//span[text()='Filters']")
+	WebElement filtersHeader;
+	@FindBy(xpath="//div[text()='Brand']")
+	WebElement brandFilter;
+	@FindBy(xpath="(//div[contains(@class,'KvHRYS')])[1]")
+	WebElement moreBrands;
+	@FindBy(css="div[title='HP']")
+	WebElement brandElement;
+	
+	@FindBy(css="div[class='suthUA'] select[class='Gn+jFg']")
+	WebElement minPricedp;
+	@FindBy(css="div[class='tKgS7w'] select[class='Gn+jFg']")
+	WebElement maxPricedp;
+	@FindBy(xpath="//div[text()='Newest First']")
+	WebElement sorting;
+	
+	@FindBy(css=".XQDdHH")
+	
+	//List<WebElement> ratings = driver.findElements(By.cssSelector(".XQDdHH"));
+	
+
+	public void brandsFilter() throws InterruptedException {
+		brandFilter.click();
+		moreBrands.click();
+		brandElement.click();
+		threadSleep();
+	}
+	
+	public void priceFilter(String userminPrice, String usermaxPrice) throws InterruptedException {
+		Select minPrice = new Select(minPricedp);
+		minPrice.selectByValue(userminPrice);
+		
+		Select maxPrice = new Select(maxPricedp);
+		maxPrice.selectByVisibleText(usermaxPrice);
+		threadSleep();
+	}
+
+	public void customerRatingFilter(int userrating) throws InterruptedException {
+		driver.findElement(By.xpath("//div[contains(@title,'"+userrating+"★')]")).click();
+		threadSleep();
+	}
+	
+	public void sorting() throws InterruptedException {
+		sorting.click();
+		threadSleep();
+	}
+}
+
+/*
+
+	
+*/

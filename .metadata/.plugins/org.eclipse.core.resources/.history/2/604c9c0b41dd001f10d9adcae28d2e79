@@ -1,0 +1,106 @@
+package Utilities;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import AbstractComponents.AbstractComponents;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+public class WindowHandler extends AbstractComponents{
+
+    WebDriver driver;
+
+    @FindBy(xpath="//a[@class='CGtC98']")
+    List<WebElement> clickable;
+    
+    public WindowHandler(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
+
+    // Method to switch to a window by title
+    public void switchToWindowByTitle(String windowTitle) {
+        String originalWindow = driver.getWindowHandle();
+        Set<String> windowHandles = driver.getWindowHandles();
+        
+        for (String windowHandle : windowHandles) {
+            driver.switchTo().window(windowHandle);
+            if (driver.getTitle().equals(windowTitle)) {
+                return;
+            }
+        }
+        driver.switchTo().window(originalWindow); // Switch back if not found
+    }
+
+    // Method to switch to a window by index
+    public void switchToWindowByIndex(int index) {
+        Set<String> windowHandles = driver.getWindowHandles();
+        int i = 0;
+        for (String windowHandle : windowHandles) {
+            if (i == index) {
+                driver.switchTo().window(windowHandle);
+                return;
+            }
+            i++;
+        }
+    }
+
+    // Method to close all windows except the main window
+    public void closeAllWindowExceptMain() {
+        String mainWindow = driver.getWindowHandle();
+        Set<String> windowHandles = driver.getWindowHandles();
+        
+        for (String windowHandle : windowHandles) {
+            if (!windowHandle.equals(mainWindow)) {
+                driver.switchTo().window(windowHandle).close();
+            }
+        }
+        driver.switchTo().window(mainWindow);
+    }
+    
+    public int openAllTabWithoutChangingFrame(int tab) throws InterruptedException {
+    	for (int i = 0; i < Math.min(clickable.size(), tab); i++) {	
+			WebElement move = clickable.get(i);
+			move.sendKeys(Keys.chord(Keys.CONTROL,Keys.RETURN));
+    }
+    	threadSleep();
+    	return (driver.getWindowHandles().size());
+    }
+    
+    @FindBy(xpath="//*[text()='Place Order']")
+    WebElement placeOrder;
+    @FindBy(xpath="//button[contains(@class,'QqFHMw vslbG+ In9uk2')]")
+    WebElement addToCart;
+    @FindBy(id="pincodeInputId")
+    WebElement pincodeEditBox;
+
+    // //button[contains(@class,'QqFHMw vslbG+ In9uk2')]
+    public void parentChildWinowHandles(String pincode,int numberOfPdts) throws InterruptedException {
+    	
+    	for (int i = 0; i < Math.min(clickable.size(), numberOfPdts); i++) {	
+		clickable.get(i).click();
+    	
+    	Set<String> wind = driver.getWindowHandles();
+		Iterator<String> it = wind.iterator();
+		
+		String parent = it.next();
+		String child = it.next();
+		
+		driver.switchTo().window(child);
+		threadSleep();
+		
+		pincodeEditBox.sendKeys(pincode,Keys.ENTER);
+		addToCart.click();
+		visibilityOf(placeOrder);
+		driver.close();
+		driver.switchTo().window(parent);
+    }}
+    
+}

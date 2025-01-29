@@ -1,0 +1,30 @@
+package PageObjects;
+
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class CartPage {
+
+	ChromeDriver driver;
+	
+	@FindBy(xpath="//span[contains(@class,'LAlF6k re6bBo')]")
+	List<WebElement> pdtsPrice;
+	
+	public CartPage(ChromeDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+
+	public void priceCal() {
+		int sum = 0;
+		for(int i=0; i<pdtsPrice.size();i++) {
+			//sum += pdtsPrice.get(i).getText().split("₹")
+			String price = pdtsPrice.get(i).getText().split("₹")[1].replace(",", "");
+			System.out.println(price);
+		}
+	}
+}

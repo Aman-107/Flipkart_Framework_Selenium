@@ -1,0 +1,8 @@
+package PageObjects;
+
+public class CartPage {
+
+	
+	@FindBy(xpath="//span[contains(@class,'LAlF6k re6bBo')]")
+	List<WebEelement> pdtsPrice;
+}

@@ -41,8 +41,8 @@ public class Optimised_Code extends BaseTest {
 		searchPage.appliedFilter(); // Applied Filters
 		searchPage.priceSorting(); // Pricing Order Verification
 		
-	List<WebElement> ratings = driver.findElements(By.cssSelector(".XQDdHH")); // total products in the page
 			// Ratings Verification
+		List<WebElement> ratings = driver.findElements(By.cssSelector(".XQDdHH")); // total products in the page	
 		for (int i = 1; i <=ratings.size(); i++) {
 		double pdtRating = Double.parseDouble((driver.findElement(By.xpath("(//div[@class='XQDdHH'])[" + i + "]")).getText()));
 			if (pdtRating < queryRating) {
@@ -75,11 +75,9 @@ public class Optimised_Code extends BaseTest {
 		}
 	
  }	
-		// Clean up
-		// driver.quit();
+//		 Clean up
+//		 driver.quit();
 
 
 /*
-
- *
  */

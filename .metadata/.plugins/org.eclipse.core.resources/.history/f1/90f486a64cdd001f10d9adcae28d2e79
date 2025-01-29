@@ -1,0 +1,9 @@
+package PageObjects;
+
+import AbstractComponents.AbstractComponents;
+
+public class Headers extends AbstractComponents {
+	
+	
+
+}

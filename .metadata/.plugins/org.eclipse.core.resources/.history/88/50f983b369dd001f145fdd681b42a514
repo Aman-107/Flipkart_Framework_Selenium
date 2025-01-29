@@ -1,0 +1,85 @@
+package TestCases;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import PageObjects.CartPage;
+import PageObjects.Headers;
+import PageObjects.HomePage;
+import PageObjects.SearchPage;
+import TestComponents.BaseTest;
+import Utilities.WindowHandler;
+
+public class Optimised_Code extends BaseTest {
+
+	ChromeDriver driver = invokeDriver();
+	HomePage homePage = new HomePage(driver);
+	SearchPage searchPage = new SearchPage(driver);
+	WindowHandler windowHandler = new WindowHandler(driver);
+	Headers headers = new Headers(driver);
+	CartPage cartPage = new CartPage(driver);
+	
+
+	@Test
+	public void Search_Functionality_Filters() throws InterruptedException {
+		
+		double queryRating = 3.0;
+		int castRating = (int) queryRating;
+		
+		homePage.landingPage();
+		homePage.searchBox();
+
+		searchPage.brandsFilter();
+		searchPage.priceFilter("50000", "₹75000+");
+		searchPage.customerRatingFilter(castRating); // Customer Ratings
+		searchPage.sorting(); // Price high to low
+		searchPage.appliedFilter(); // Applied Filters
+		searchPage.priceSorting(); // Pricing Order Verification
+		
+	List<WebElement> ratings = driver.findElements(By.cssSelector(".XQDdHH")); // total products in the page
+			// Ratings Verification
+		for (int i = 1; i <=ratings.size(); i++) {
+		double pdtRating = Double.parseDouble((driver.findElement(By.xpath("(//div[@class='XQDdHH'])[" + i + "]")).getText()));
+			if (pdtRating < queryRating) {
+				System.out.println(driver.findElement(By.xpath("(//div[@class='KzDlHZ'])[" + i + "]")).getText());
+			}
+				}
+				// sorting verification
+				String expectedSort = driver.findElement(By.cssSelector(".zg-M3Z._0H7xSG")).getText();
+				Assert.assertEquals(expectedSort, "Newest First");
+	}
+	
+	
+	@Test
+	public void addingMultipleProductsCart() throws InterruptedException {
+         driver.get("https://www.flipkart.com/search?q=Laptops&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&p%5B%5D=facets.price_range.from%3D50000&p%5B%5D=facets.price_range.to%3DMax&p%5B%5D=facets.brand%255B%255D%3DHP&p%5B%5D=facets.rating%255B%255D%3D3%25E2%2598%2585%2B%2526%2Babove&sort=price_desc");
+		   
+		windowHandler.parentChildWinowHandles("221007",3);
+		windowHandler.closeAllWindowExceptMain();
+		headers.cartPage();
+		
+		String actualPrice = cartPage.priceCal();
+		String expectedPrice = cartPage.totalAmount();
+		Assert.assertEquals(actualPrice, expectedPrice);
+		
+		cartPage.removeProducts(1);
+		actualPrice = cartPage.priceCal();
+		expectedPrice = cartPage.totalAmount();
+		Assert.assertEquals(actualPrice, expectedPrice);
+		
+		}
+	
+ }	
+		// Clean up
+		// driver.quit();
+
+
+/*
+
+ *
+ */

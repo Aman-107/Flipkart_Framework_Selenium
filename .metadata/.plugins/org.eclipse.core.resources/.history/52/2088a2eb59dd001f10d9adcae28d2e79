@@ -1,0 +1,115 @@
+package TestCases;
+
+import java.time.Duration;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import PageObjects.CartPage;
+import PageObjects.Headers;
+import PageObjects.HomePage;
+import PageObjects.SearchPage;
+import TestComponents.BaseTest;
+import Utilities.WindowHandler;
+
+public class Optimised_Code extends BaseTest {
+
+	ChromeDriver driver = invokeDriver();
+	HomePage homePage = new HomePage(driver);
+	SearchPage searchPage = new SearchPage(driver);
+	WindowHandler windowHandler = new WindowHandler(driver);
+	Headers headers = new Headers(driver);
+	CartPage cartPage = new CartPage(driver);
+	
+	//@Test
+	public void Search_Functionality_Filters() throws InterruptedException {
+		
+		double queryRating = 3.0;
+		int castRating = (int) queryRating;
+		
+		homePage.landingPage();
+		homePage.searchBox();
+
+		searchPage.brandsFilter();
+		searchPage.priceFilter("50000", "₹75000+");
+		searchPage.customerRatingFilter(castRating); // Customer Ratings
+		searchPage.sorting(); // Price high to low
+		
+		List<WebElement> ratings = driver.findElements(By.cssSelector(".XQDdHH")); // total products in the page
+		
+		// Applied Filters
+		List<WebElement> filtersApplied = driver.findElements(By.cssSelector(".YcSYyC"));
+		for(int i=0; i<filtersApplied.size(); i++) {
+			System.out.println(driver.findElements(By.cssSelector(".YcSYyC")).get(i).getText());
+		}
+
+		// Pricing Order Verification
+		for (int i = 0; i < ratings.size(); i++) {
+		String rawPrice = driver.findElement(By.cssSelector(".Nx9bqj._4b5DiR")).getText().split("₹")[1];
+		int compaPrice = 0;
+		int price = Integer.parseInt(rawPrice.replace(",", "")); 
+					
+		if(compaPrice > price) {
+		System.out.println("sorting not working at:" + driver.findElement(By.xpath("(//div[@class='KzDlHZ'])[" + i + "]")).getText());
+		}
+		 }
+			// Ratings Verification
+		for (int i = 1; i <=ratings.size(); i++) {
+		double pdtRating = Double.parseDouble((driver.findElement(By.xpath("(//div[@class='XQDdHH'])[" + i + "]")).getText()));
+			if (pdtRating < queryRating) {
+				System.out.println(driver.findElement(By.xpath("(//div[@class='KzDlHZ'])[" + i + "]")).getText());
+			}
+				}
+
+				// sorting verification
+				String expectedSort = driver.findElement(By.cssSelector(".zg-M3Z._0H7xSG")).getText();
+				Assert.assertEquals(expectedSort, "Newest First");
+	}
+	
+	// Scenario 3
+	@Test
+	public void addingMultipleProductsCart() throws InterruptedException {
+         driver.get("https://www.flipkart.com/search?q=Laptops&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&p%5B%5D=facets.price_range.from%3D50000&p%5B%5D=facets.price_range.to%3DMax&p%5B%5D=facets.brand%255B%255D%3DHP&p%5B%5D=facets.rating%255B%255D%3D3%25E2%2598%2585%2B%2526%2Babove&sort=price_desc");
+		   
+		windowHandler.parentChildWinowHandles("221007",3);
+		windowHandler.closeAllWindowExceptMain();
+		headers.cartPage();
+		
+		String actualPrice = cartPage.priceCal();
+		String expectedPrice = cartPage.totalAmount();
+		Assert.assertEquals(actualPrice, expectedPrice);
+		
+		cartPage.removeProducts(1);
+		
+		}
+	}	
+		// Clean up
+		// driver.quit();
+
+
+/*
+ ### **Scenario 3: Validate Adding Multiple Products to Cart**  
+**Steps:**  
+1. Search for and add multiple products to the cart.  
+2. Navigate to the cart page.  
+3. Verify the total price calculation.  
+4. Remove one item from the cart.  
+
+**Validation Points:**  
+- All added products are displayed in the cart.  
+- Total price is calculated accurately.  
+- Cart updates correctly when an item is removed.
+
+---
+ *
+ */
