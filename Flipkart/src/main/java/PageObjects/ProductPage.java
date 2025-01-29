@@ -1,7 +1,5 @@
 package PageObjects;
 
-import java.util.List;
-
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,6 +13,7 @@ public class ProductPage extends AbstractComponents {
 	ChromeDriver driver;
 
 	public ProductPage(ChromeDriver driver) {
+		super (driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -31,6 +30,8 @@ public class ProductPage extends AbstractComponents {
 	WebElement wishlist;
 	@FindBy(css = ".eIDgeN")
 	WebElement popUp;
+	
+	
 
 	public void wishList() {
 		visibilityOf(wishlist);
@@ -50,4 +51,7 @@ public class ProductPage extends AbstractComponents {
 		visibilityOf(placeOrder);
 	}
 
+	public void buyNow() {
+		buyNow.click();
+	}
 }

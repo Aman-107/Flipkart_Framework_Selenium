@@ -7,6 +7,7 @@ import java.util.Set;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -18,7 +19,8 @@ public class WindowHandler extends AbstractComponents {
 	@FindBy(xpath = "//a[@class='CGtC98']")
 	List<WebElement> clickable;
 
-	public WindowHandler(WebDriver driver) {
+	public WindowHandler(ChromeDriver driver) {
+		super (driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -52,9 +54,11 @@ public class WindowHandler extends AbstractComponents {
 
 	// Method to close all windows except the main window
 	public void closeAllWindowExceptMain() {
-		String mainWindow = driver.getWindowHandle();
+		//String mainWindow = driver.getWindowHandle();
 		Set<String> windowHandles = driver.getWindowHandles();
-
+		Iterator<String> it =windowHandles.iterator();
+		String mainWindow = it.next();
+		
 		for (String windowHandle : windowHandles) {
 			if (!windowHandle.equals(mainWindow)) {
 				driver.switchTo().window(windowHandle).close();
@@ -72,17 +76,17 @@ public class WindowHandler extends AbstractComponents {
 		return (driver.getWindowHandles().size());
 	}
 
-	public void childWinowHandle() throws InterruptedException {
+	public void childWindowHandle() throws InterruptedException {
 
 		Set<String> wind = driver.getWindowHandles();
 		Iterator<String> it = wind.iterator();
-		it.next(); // parent window
+		String parent = it.next(); // parent window
 		String child = it.next();
 		driver.switchTo().window(child);
 		threadSleep();
 	}
 
-	public void parentWinowHandle() throws InterruptedException {
+	public void parentWindowHandle() throws InterruptedException {
 
 		Set<String> wind = driver.getWindowHandles();
 		Iterator<String> it = wind.iterator();

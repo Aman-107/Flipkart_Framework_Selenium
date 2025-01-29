@@ -20,6 +20,7 @@ public class HomePage extends AbstractComponents {
 	WebElement filtersHeader;
 	
 	public HomePage(ChromeDriver driver) {
+		super (driver);
 		this.driver = driver;
 		PageFactory.initElements(driver,this);
 	}
@@ -29,6 +30,7 @@ public class HomePage extends AbstractComponents {
 	}
 	
 	public void searchBox(String pdts) {
+		searchBox.clear();
 		searchBox.sendKeys(pdts,Keys.ENTER);
 		visibilityOf(filtersHeader);
 	}

@@ -9,12 +9,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import Cookies.LoadCookies;
 import PageObjects.CartPage;
 import PageObjects.Headers;
 import PageObjects.HomePage;
 import PageObjects.ProductPage;
 import PageObjects.SearchPage;
+import PageObjects.WishListPage;
 import TestComponents.BaseTest;
 import Utilities.WindowHandler;
 
@@ -27,20 +27,21 @@ public class Optimised_Code extends BaseTest {
 	Headers headers = new Headers(driver);
 	CartPage cartPage = new CartPage(driver);
 	ProductPage productPage = new ProductPage(driver);
+	WishListPage wishListPage = new WishListPage(driver);
 	
-	//@Test
+	@Test
 	public void Login() throws IOException {
 		homePage.landingPage();
 		LoadCookies(driver);
 		System.out.println("Login Successfully");
 	}
 	
-	//@Test
+	@Test
 	public void Search_Functionality_Filters() throws InterruptedException {
 		
 		double queryRating = 3.0;
 		int castRating = (int) queryRating;
-		
+		//homePage.landingPage();
 		homePage.searchBox("Laptops");
 
 		searchPage.brandsFilter();
@@ -64,17 +65,17 @@ public class Optimised_Code extends BaseTest {
 	}
 	
 	
-	//@Test
+	@Test
 	public void addingMultipleProductsCart() throws InterruptedException {
-         driver.get("https://www.flipkart.com/search?q=Laptops&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&p%5B%5D=facets.price_range.from%3D50000&p%5B%5D=facets.price_range.to%3DMax&p%5B%5D=facets.brand%255B%255D%3DHP&p%5B%5D=facets.rating%255B%255D%3D3%25E2%2598%2585%2B%2526%2Babove&sort=price_desc");
+         //driver.get("https://www.flipkart.com/search?q=Laptops&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&p%5B%5D=facets.price_range.from%3D50000&p%5B%5D=facets.price_range.to%3DMax&p%5B%5D=facets.brand%255B%255D%3DHP&p%5B%5D=facets.rating%255B%255D%3D3%25E2%2598%2585%2B%2526%2Babove&sort=price_desc");
 		 
 		for(int i=0; i<3;i++) { // 3 = number of products
 		searchPage.productDetails(i);
-		windowHandler.childWinowHandle();
+		windowHandler.childWindowHandle();
 		productPage.pincode("221007");
 		productPage.addToCart();
 		driver.close();
-		windowHandler.parentWinowHandle();
+		windowHandler.parentWindowHandle();
 		}
 		windowHandler.closeAllWindowExceptMain();
 		headers.cartPage();
@@ -90,15 +91,18 @@ public class Optimised_Code extends BaseTest {
 		Assert.assertEquals(actualPrice, expectedPrice);
 		}
 	
-	//@Test
-	public void wishlistFunctionality() {
+	@Test
+	public void wishlistFunctionality() throws InterruptedException {
 		homePage.searchBox("Samsung S24 ultra");
 		String pdts = ("S24 ultra").toLowerCase();
-		System.out.println(pdts);
+		//System.out.println(pdts);
 		searchPage.productSearch(pdts);
-		windowHandler.switchToWindowByIndex(2);
-		//productPage.wishList();
-		
+		//searchPage.productDetails(3);
+		windowHandler.childWindowHandle();
+		productPage.wishList();
+		windowHandler.closeAllWindowExceptMain();
+		headers.profileHover();
+		headers.wishList(pdts);
 	}
 	
  }	

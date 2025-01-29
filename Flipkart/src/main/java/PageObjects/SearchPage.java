@@ -16,6 +16,7 @@ public class SearchPage extends AbstractComponents {
 
 	WebDriver driver;
 	public SearchPage(ChromeDriver driver) {
+		super (driver);
 		this.driver=driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -45,8 +46,8 @@ public class SearchPage extends AbstractComponents {
 	@FindBy(xpath="//div[@class='KzDlHZ']")
 	List<WebElement> pdtsName;
 	
-	@FindBy(css=".KzDlHZ")
-	List<WebElement> products;
+//	@FindBy(css=".KzDlHZ")
+//	List<WebElement> products;
 //	@FindBy(xpath="//a[@class='CGtC98']")
 //    List<WebElement> clickable;
 	
@@ -94,18 +95,22 @@ public class SearchPage extends AbstractComponents {
 	}
 	
 	public void productSearch(String pdts) {
-		for(int i=0; i<products.size(); i++) {
-			if(products.get(i).getText().toLowerCase().contains(pdts)) {
-				products.get(i).click();
-				System.out.println(products.get(i).getText().toLowerCase());
+		for(int i=0; i<pdtsName.size(); i++) {
+			if(pdtsName.get(i).getText().toLowerCase().contains(pdts)) {
+				pdtsName.get(i).click();
+				System.out.println(pdtsName.get(i).getText().toLowerCase());
 				break;
 			}
 		}
 	}
 
 	public void productDetails(int pdts) {
-		//int pdt = pdts + 1;
-		pdtsName.get(pdts).click();
+		for(int i=0; i<=Math.min(pdtsName.size(), pdts); i++) {
+			if (i == (pdts)) {
+				pdtsName.get(i).click();
+			}
+		}
+		
 	}
 }
 

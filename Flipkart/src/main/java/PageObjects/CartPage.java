@@ -29,6 +29,7 @@ public class CartPage extends AbstractComponents {
 
 	
 	public CartPage(ChromeDriver driver) {
+		super (driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}

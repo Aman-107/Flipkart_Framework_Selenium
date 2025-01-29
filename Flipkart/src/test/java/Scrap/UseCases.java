@@ -23,15 +23,17 @@ public class UseCases {
 //		int i = (int) d;
 //		System.out.println(i);
 		ChromeOptions options = new ChromeOptions();
-		//options.addArguments("--incognito");
+		options.addArguments("--incognito");
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		
-		driver.get("https://www.amazon.in/");
-		driver.findElement(By.id("nav-link-accountList")).click();
-		Thread.sleep(2000);
-		driver.findElement(By.name("email")).sendKeys("testing.purpose.only.107@gmail.com",Keys.ENTER);
+		driver.get("https://www.flipkart.com/");
+		driver.findElement(By.name("q")).sendKeys("Laptops",Keys.ENTER);
+		Thread.sleep(3000);
+		WebElement move = driver.findElement(By.xpath("(//div[@class='tP+nZg _2E9UgX'])[1]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(move).build().perform();
 		//driver.findElement(By.id("email")).sendKeys("your-email@example.com");
 		//driver.findElement(By.id("send-otp")).click();
 		
