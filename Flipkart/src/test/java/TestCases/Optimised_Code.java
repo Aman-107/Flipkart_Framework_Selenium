@@ -38,7 +38,7 @@ public class Optimised_Code extends BaseTest {
 		System.out.println("Login Successfully");
 	}
 	
-	//@Test
+	@Test
 	public void Search_Functionality_Filters() throws InterruptedException {
 		
 		double queryRating = 3.0;
@@ -67,7 +67,7 @@ public class Optimised_Code extends BaseTest {
 	}
 	
 	
-	//@Test
+	@Test
 	public void addingMultipleProductsCart() throws InterruptedException {
          //driver.get("https://www.flipkart.com/search?q=Laptops&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&p%5B%5D=facets.price_range.from%3D50000&p%5B%5D=facets.price_range.to%3DMax&p%5B%5D=facets.brand%255B%255D%3DHP&p%5B%5D=facets.rating%255B%255D%3D3%25E2%2598%2585%2B%2526%2Babove&sort=price_desc");
 		 
@@ -93,7 +93,7 @@ public class Optimised_Code extends BaseTest {
 		Assert.assertEquals(actualPrice, expectedPrice);
 		}
 	
-	//@Test
+	@Test
 	public void wishlistFunctionality() throws InterruptedException {
 		homePage.searchBox("Samsung S24 ultra");
 		String pdts = ("S24 ultra").toLowerCase();
@@ -107,31 +107,14 @@ public class Optimised_Code extends BaseTest {
 	}
 	
 	@Test
-	public void reviews() throws InterruptedException {
-		//headers.profileHover();
-		//headers.myOrders();
-		driver.get("https://www.flipkart.com/account/orders?link=home_orders");
-		// ordersPage.deliverdOrders("yes"); -> Has to use sibling concept
+	public void reviews() throws InterruptedException, IOException {
+		headers.profileHover();
+		headers.myOrders();
+		//driver.get("https://www.flipkart.com/account/orders?link=home_orders");
+		ordersPage.reviewOrders("4","Good Smell", "Beardo","ImageYes");
 		
 		
 	} 
  }	
 //		 Clean up
 //		 driver.quit();
-
-
-/*
- 
-### **Scenario 6: Validate Product Review and Ratings Submission**  
-**Steps:**  
-1. Navigate to the "My Orders" section after an order is delivered.  
-2. Select an order and click "Write a Review".  
-3. Submit a rating and review for the product.  
-
-**Validation Points:**  
-- Rating and review are submitted successfully.  
-- Review is displayed on the product page.  
-
----
-
- */

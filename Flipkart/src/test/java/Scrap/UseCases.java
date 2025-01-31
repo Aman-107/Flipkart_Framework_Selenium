@@ -116,7 +116,8 @@ public class UseCases {
 **Steps:**  
 1. Navigate to the "My Orders" section after an order is delivered.  
 2. Select an order and click "Write a Review".  
-3. Submit a rating and review for the product.  
+3. Submit a rating and review for the product.
+4. Upload the Images for review.   
 
 **Validation Points:**  
 - Rating and review are submitted successfully.  
