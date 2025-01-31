@@ -198,10 +198,7 @@ public class UseCases {
 - A retry option is provided for slow network conditions.
 
 ---
-
-These scenarios cover both functional and non-functional aspects of Flipkart’s application. If you need automation scripts for any of these, let me know!
-
-		
+	
 		*/
 	}
 
