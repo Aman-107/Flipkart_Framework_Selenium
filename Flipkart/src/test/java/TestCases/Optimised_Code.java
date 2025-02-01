@@ -110,9 +110,7 @@ public class Optimised_Code extends BaseTest {
 	public void reviews() throws InterruptedException, IOException {
 		//driver.get("https://www.flipkart.com/account/orders?link=home_orders");
 		headers.myOrders();
-		ordersPage.reviewOrders("4","Good Smell", "Beardo","ImageYes");
-		
-		
+		ordersPage.reviewOrders("4","Good Smell", "Beardo","ImageYes");	
 	} 
  
 	//@Test
@@ -126,7 +124,7 @@ public class Optimised_Code extends BaseTest {
 		profilePage.deleteAddress("Sa 16/192-D-6, shadow, Varanasi");
 	}
 
-	@Test
+	//@Test
 	public void cancellation() throws InterruptedException {
 		//ordersPage.getOrdersName(null)
 		driver.get("https://www.flipkart.com/account/orders?link=home_orders");
@@ -134,21 +132,26 @@ public class Optimised_Code extends BaseTest {
 		ordersPage.cancelledOrders("alDivo Mug");
 	}
 	
+	@Test
+	public void coupons() { //for coupons done the implemented the code for flight bookings
+		
+	}
+	
+	
 }	
 //		 Clean up
 //		 driver.quit();
 
 /*
-### **Scenario 8: Validate Order Cancellation**  
+### **Scenario 9: Validate Offers and Coupon Codes**  
 **Steps:**  
-1. Place an order and navigate to the "My Orders" section.  
-2. Select the order and click "Cancel".  
-3. Provide a reason for cancellation and confirm.  
+1. Add a product to the cart.  
+2. Apply an available coupon code during checkout.  
+3. Verify that the discount is applied correctly.  
 
 **Validation Points:**  
-- Order cancellation is processed successfully.  
-- Refund is initiated (if applicable).  
-- Status of the order changes to "Cancelled".
+- Discount is reflected in the total price.  
+- Invalid coupon codes display an appropriate error message.
 
 ---
 */
