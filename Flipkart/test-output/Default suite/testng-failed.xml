@@ -5,8 +5,7 @@
     <classes>
       <class name="TestCases.Optimised_Code">
         <methods>
-          <include name="Login"/>
-          <include name="address"/>
+          <include name="cancellation"/>
         </methods>
       </class> <!-- TestCases.Optimised_Code -->
     </classes>
