@@ -25,6 +25,9 @@ public class HomePage extends AbstractComponents {
 		PageFactory.initElements(driver,this);
 	}
 
+	@FindBy(xpath="//div[contains(@class,'YBLJE4')]//span[contains(text(),'Flight')]")
+	WebElement flightBooking;
+	
 	public void landingPage() {
 		driver.get("https://www.flipkart.com/");
 	}
@@ -34,4 +37,9 @@ public class HomePage extends AbstractComponents {
 		searchBox.sendKeys(pdts,Keys.ENTER);
 		visibilityOf(filtersHeader);
 	}
+	
+	public void flightBooking() {
+		flightBooking.click();
+	}
+
 }

@@ -2,40 +2,33 @@ package Scrap;
 
 import java.time.Duration;
 import java.util.List;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
 
 public class UseCases {
 
-	public static void main(String[] args) throws InterruptedException {
-		// TODO Auto-generated method stub
+    public static void main(String[] args) throws InterruptedException {
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--incognito");
+//        WebDriver driver = new ChromeDriver();
+//        driver.manage().window().maximize();
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
-//		Double queryRating = (double) 3;
-//		System.out.println(queryRating);
-//		
-//		double d = 4.8;
-//		int i = (int) d;
-//		System.out.println(i);
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--incognito");
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        String s1 = "₹17,007";
+        System.out.println(Integer.parseInt(s1.split("₹")[1].replace(",","")));
+        
+    }
+}
+
+
+
 		
-		driver.get("https://www.flipkart.com/");
-		driver.findElement(By.name("q")).sendKeys("Laptops",Keys.ENTER);
-		Thread.sleep(3000);
-		WebElement move = driver.findElement(By.xpath("(//div[@class='tP+nZg _2E9UgX'])[1]"));
-		Actions action = new Actions(driver);
-		action.moveToElement(move).build().perform();
-		//driver.findElement(By.id("email")).sendKeys("your-email@example.com");
-		//driver.findElement(By.id("send-otp")).click();
+		
+		
+		
 		
 		/*
 		Here are additional scenarios to validate the Flipkart platform comprehensively:
@@ -200,6 +193,3 @@ public class UseCases {
 ---
 	
 		*/
-	}
-
-}

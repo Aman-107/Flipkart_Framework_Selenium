@@ -5,7 +5,7 @@
     <classes>
       <class name="TestCases.Optimised_Code">
         <methods>
-          <include name="cancellation"/>
+          <include name="coupons"/>
         </methods>
       </class> <!-- TestCases.Optimised_Code -->
     </classes>

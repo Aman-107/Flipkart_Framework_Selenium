@@ -10,6 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import PageObjects.CartPage;
+import PageObjects.FlightBookingPage;
 import PageObjects.Headers;
 import PageObjects.HomePage;
 import PageObjects.OrdersPage;
@@ -32,6 +33,7 @@ public class Optimised_Code extends BaseTest {
 	WishListPage wishListPage = new WishListPage(driver);
 	OrdersPage ordersPage = new OrdersPage(driver);
 	ProfilePage profilePage = new ProfilePage(driver);
+	FlightBookingPage flightBookingPage = new FlightBookingPage(driver);
 	
 	@Test
 	public void Login() throws IOException {
@@ -40,7 +42,7 @@ public class Optimised_Code extends BaseTest {
 		System.out.println("Login Successfully");
 	}
 	
-	//@Test
+	@Test
 	public void Search_Functionality_Filters() throws InterruptedException {
 		
 		double queryRating = 3.0;
@@ -68,7 +70,7 @@ public class Optimised_Code extends BaseTest {
 				Assert.assertEquals(expectedSort, "Newest First");
 	}
 	
-	//@Test
+	@Test
 	public void addingMultipleProductsCart() throws InterruptedException {
          //driver.get("https://www.flipkart.com/search?q=Laptops&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&p%5B%5D=facets.price_range.from%3D50000&p%5B%5D=facets.price_range.to%3DMax&p%5B%5D=facets.brand%255B%255D%3DHP&p%5B%5D=facets.rating%255B%255D%3D3%25E2%2598%2585%2B%2526%2Babove&sort=price_desc");
 		 
@@ -94,7 +96,7 @@ public class Optimised_Code extends BaseTest {
 		Assert.assertEquals(actualPrice, expectedPrice);
 		}
 	
-	//@Test
+	@Test
 	public void wishlistFunctionality() throws InterruptedException {
 		homePage.searchBox("Samsung S24 ultra");
 		String pdts = ("S24 ultra").toLowerCase();
@@ -106,14 +108,14 @@ public class Optimised_Code extends BaseTest {
 		wishListPage.wishListItemsDelete(pdts);
 	}
 	
-	//@Test
+	@Test
 	public void reviews() throws InterruptedException, IOException {
 		//driver.get("https://www.flipkart.com/account/orders?link=home_orders");
 		headers.myOrders();
 		ordersPage.reviewOrders("4","Good Smell", "Beardo","ImageYes");	
 	} 
  
-	//@Test
+	@Test
 	public void address() throws InterruptedException {
 		driver.get("https://www.flipkart.com/account/orders?link=home_orders");
 		headers.myProfile();
@@ -124,7 +126,7 @@ public class Optimised_Code extends BaseTest {
 		profilePage.deleteAddress("Sa 16/192-D-6, shadow, Varanasi");
 	}
 
-	//@Test
+	@Test
 	public void cancellation() throws InterruptedException {
 		//ordersPage.getOrdersName(null)
 		driver.get("https://www.flipkart.com/account/orders?link=home_orders");
@@ -133,8 +135,10 @@ public class Optimised_Code extends BaseTest {
 	}
 	
 	@Test
-	public void coupons() { //for coupons done the implemented the code for flight bookings
-		
+	public void coupons() throws InterruptedException { //for coupons done the implemented the code for flight bookings
+		homePage.flightBooking();
+		flightBookingPage.bookTickets("Varanasi", "Mumbai", "10", "July", "1", "0", "0");
+		flightBookingPage.coupons("FLYFK",975);
 	}
 	
 	
@@ -143,15 +147,5 @@ public class Optimised_Code extends BaseTest {
 //		 driver.quit();
 
 /*
-### **Scenario 9: Validate Offers and Coupon Codes**  
-**Steps:**  
-1. Add a product to the cart.  
-2. Apply an available coupon code during checkout.  
-3. Verify that the discount is applied correctly.  
 
-**Validation Points:**  
-- Discount is reflected in the total price.  
-- Invalid coupon codes display an appropriate error message.
-
----
 */

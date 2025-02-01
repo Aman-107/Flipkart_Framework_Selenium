@@ -34,8 +34,7 @@ public class Headers extends AbstractComponents {
 	@FindBy(xpath="//div[text()='Wishlist']")
 	WebElement wishListHeader;
 	@FindBy(xpath="//div[text()='My Profile']")
-	WebElement myProfile;
-	
+	WebElement myProfile; 
 
 	public void cartPage() {
 		cartHeader.click();
