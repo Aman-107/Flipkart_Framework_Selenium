@@ -11,7 +11,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import AbstractComponents.AbstractComponents;
-import io.opentelemetry.exporter.logging.SystemOutLogRecordExporter;
 
 public class OrdersPage extends AbstractComponents {
 

@@ -57,7 +57,7 @@ public class WishListPage extends AbstractComponents {
     public void wishListItemsDelete(String pdts) {
     	
     	for(int i=0; i<wishlistItems.size();i++) {
-    		System.out.println(wishlistItems.get(i).getText());
+    		//System.out.println(wishlistItems.get(i).getText());
     		if(wishlistItems.get(i).getText().toLowerCase().contains(pdts)) {
     			wishlistItems.get(i).getText();
     			deleteIcon.get(i).click();
