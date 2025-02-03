@@ -12,61 +12,61 @@ import AbstractComponents.AbstractComponents;
 import Utilities.ActionsHandle;
 
 public class ProfilePage extends AbstractComponents {
-	
+
 	ChromeDriver driver;
 	ActionsHandle actionsHandle;
-	
+
 	public ProfilePage(ChromeDriver driver) {
 		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		
+
 		actionsHandle = new ActionsHandle(driver);
 	}
-	
-	@FindBy(xpath="//div[contains(@class,'PbekyG') and contains(text(),'Address')]")
+
+	@FindBy(xpath = "//div[contains(@class,'PbekyG') and contains(text(),'Address')]")
 	WebElement adresses;
-	@FindBy(css=".g8S8Av")
+	@FindBy(css = ".g8S8Av")
 	WebElement newAddress;
-	@FindBy(name="name")
+	@FindBy(name = "name")
 	WebElement nameAddress;
-	@FindBy(name="phone")
+	@FindBy(name = "phone")
 	WebElement phoneAddress;
-	@FindBy(name="pincode")
+	@FindBy(name = "pincode")
 	WebElement pincodeAddress;
-	@FindBy(name="addressLine2")
+	@FindBy(name = "addressLine2")
 	WebElement localityAddress;
-	@FindBy(name="addressLine1")
+	@FindBy(name = "addressLine1")
 	WebElement decriptionAddress;
-	@FindBy(name="city")
+	@FindBy(name = "city")
 	WebElement cityAddress;
-	@FindBy(name="state")
+	@FindBy(name = "state")
 	WebElement stateAddress;
-	@FindBy(xpath="//input[@type='radio']//ancestor::label[@for='HOME']")
+	@FindBy(xpath = "//input[@type='radio']//ancestor::label[@for='HOME']")
 	WebElement homeRadioAddress;
-	@FindBy(xpath="//button[@type='button' and text()='Save']")
+	@FindBy(xpath = "//button[@type='button' and text()='Save']")
 	WebElement saveAddress;
-	
-	@FindBy(css=".Tlp8CN._9gyQif")
+
+	@FindBy(css = ".Tlp8CN._9gyQif")
 	List<WebElement> allAddresses;
-	@FindBy(css=".rApBmn")
+	@FindBy(css = ".rApBmn")
 	List<WebElement> threedotsAddress;
-	@FindBy(xpath="//span[text()='Edit']")
+	@FindBy(xpath = "//span[text()='Edit']")
 	List<WebElement> editAddress;
-	@FindBy(xpath="//span[text()='Delete']")
+	@FindBy(xpath = "//span[text()='Delete']")
 	List<WebElement> deleteAddress;
-	@FindBy(xpath="//button[contains(@class,'q0EMge')]")
+	@FindBy(xpath = "//button[contains(@class,'q0EMge')]")
 	WebElement deleteButtonAddress;
-	
-	
-	//phone, pincode, addressLine2-> locality, addressLine1->realAddress, city, select dp = state  
+
+	// phone, pincode, addressLine2-> locality, addressLine1->realAddress, city,
+	// select dp = state
 	public void editAddress(String address, String newaddress) throws InterruptedException {
 		String oldAddress = address.toLowerCase();
 		adresses.click();
 		visibilityOf(newAddress);
-		
-		for(int i=0; i<allAddresses.size(); i++) {
-			if(allAddresses.get(i).getText().toLowerCase().contains(oldAddress)) {
+
+		for (int i = 0; i < allAddresses.size(); i++) {
+			if (allAddresses.get(i).getText().toLowerCase().contains(oldAddress)) {
 				actionsHandle.hoverElements(threedotsAddress.get(i));
 				editAddress.get(i).click();
 				decriptionAddress.sendKeys(newaddress);
@@ -75,8 +75,9 @@ public class ProfilePage extends AbstractComponents {
 			}
 		}
 	}
-	
-	public void addAddresses(String name, String phone, String pincode, String locality, String descrption, String city, String state) {
+
+	public void addAddresses(String name, String phone, String pincode, String locality, String descrption, String city,
+			String state) {
 		adresses.click();
 		visibilityOf(newAddress);
 		newAddress.click();
@@ -92,12 +93,12 @@ public class ProfilePage extends AbstractComponents {
 		homeRadioAddress.click();
 		saveAddress.click();
 	}
-	
+
 	public void deleteAddress(String address) throws InterruptedException {
 		visibilityOf(adresses);
 		String oldAddress = address.toLowerCase();
-		for(int i=0; i<allAddresses.size(); i++) {
-			if(allAddresses.get(i).getText().toLowerCase().contains(oldAddress)) {
+		for (int i = 0; i < allAddresses.size(); i++) {
+			if (allAddresses.get(i).getText().toLowerCase().contains(oldAddress)) {
 				actionsHandle.hoverElements(threedotsAddress.get(i));
 				deleteAddress.get(i).click();
 				visibilityOf(deleteButtonAddress);

@@ -13,7 +13,7 @@ public class ProductPage extends AbstractComponents {
 	ChromeDriver driver;
 
 	public ProductPage(ChromeDriver driver) {
-		super (driver);
+		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -30,8 +30,6 @@ public class ProductPage extends AbstractComponents {
 	WebElement wishlist;
 	@FindBy(css = ".eIDgeN")
 	WebElement popUp;
-	
-	
 
 	public void wishList() {
 		visibilityOf(wishlist);
@@ -40,12 +38,12 @@ public class ProductPage extends AbstractComponents {
 		visibilityOf(popUp);
 		System.out.println(popUp.getText());
 	}
-	
+
 	public void pincode(String pincode) throws InterruptedException {
-		pincodeEditBox.sendKeys(pincode,Keys.ENTER);
+		pincodeEditBox.sendKeys(pincode, Keys.ENTER);
 		threadSleep();
 	}
-	
+
 	public void addToCart() {
 		addToCart.click();
 		visibilityOf(placeOrder);

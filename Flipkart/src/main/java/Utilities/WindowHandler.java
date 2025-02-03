@@ -19,8 +19,8 @@ public class WindowHandler extends AbstractComponents {
 	@FindBy(xpath = "//a[@class='CGtC98']")
 	List<WebElement> clickable;
 
-	public WindowHandler(ChromeDriver driver) {
-		super (driver);
+	public WindowHandler(WebDriver driver) {
+		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -54,11 +54,11 @@ public class WindowHandler extends AbstractComponents {
 
 	// Method to close all windows except the main window
 	public void closeAllWindowExceptMain() {
-		//String mainWindow = driver.getWindowHandle();
+		// String mainWindow = driver.getWindowHandle();
 		Set<String> windowHandles = driver.getWindowHandles();
-		Iterator<String> it =windowHandles.iterator();
+		Iterator<String> it = windowHandles.iterator();
 		String mainWindow = it.next();
-		
+
 		for (String windowHandle : windowHandles) {
 			if (!windowHandle.equals(mainWindow)) {
 				driver.switchTo().window(windowHandle).close();

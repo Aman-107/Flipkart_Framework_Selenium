@@ -13,49 +13,48 @@ public class Headers extends AbstractComponents {
 	ChromeDriver driver;
 	WishListPage wishListPage;
 	ActionsHandle actionsHandle;
-	
+
 	public Headers(ChromeDriver driver) {
-		super (driver);
+		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		
+
 		wishListPage = new WishListPage(driver);
 		actionsHandle = new ActionsHandle(driver);
 	}
-	
-	@FindBy(xpath="//*[text()='Place Order']")
+
+	@FindBy(xpath = "//*[text()='Place Order']")
 	WebElement placeOrder;
-	@FindBy(linkText="Cart")
+	@FindBy(linkText = "Cart")
 	WebElement cartHeader;
-	@FindBy(xpath="(//div[@class='tP+nZg _2E9UgX'])[1]")
+	@FindBy(xpath = "(//div[@class='tP+nZg _2E9UgX'])[1]")
 	WebElement userHover;
-	@FindBy(xpath="//*[text()='Orders']")
+	@FindBy(xpath = "//*[text()='Orders']")
 	WebElement orderHeader;
-	@FindBy(xpath="//div[text()='Wishlist']")
+	@FindBy(xpath = "//div[text()='Wishlist']")
 	WebElement wishListHeader;
-	@FindBy(xpath="//div[text()='My Profile']")
-	WebElement myProfile; 
+	@FindBy(xpath = "//div[text()='My Profile']")
+	WebElement myProfile;
 
 	public void cartPage() {
 		cartHeader.click();
 		visibilityOf(placeOrder);
 	}
-	
-	public void wishList(String pdts) throws InterruptedException {       
+
+	public void wishList(String pdts) throws InterruptedException {
 		actionsHandle.hoverElements(userHover);
 		wishListHeader.click();
-		wishListPage.wishListItemstoCart(pdts);		
+		wishListPage.wishListItemstoCart(pdts);
 	}
-  
+
 	public void myOrders() throws InterruptedException {
 		actionsHandle.hoverElements(userHover);
 		orderHeader.click();
-	} 
+	}
 
 	public void myProfile() throws InterruptedException {
 		actionsHandle.hoverElements(userHover);
 		myProfile.click();
 	}
-
 
 }

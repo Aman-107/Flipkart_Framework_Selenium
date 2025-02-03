@@ -191,5 +191,10 @@ public class UseCases {
 - A retry option is provided for slow network conditions.
 
 ---
+
+NOTE : All the above scenario's should have : 
+1. Reports i.e Extent Report.
+2. Listeners.
+3. Retry mechanism to run for atleast 2 times.
 	
 		*/

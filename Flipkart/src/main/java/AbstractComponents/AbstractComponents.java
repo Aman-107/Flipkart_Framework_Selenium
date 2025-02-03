@@ -15,7 +15,7 @@ public class AbstractComponents {
 
 	WebDriver driver;
 	
-	public AbstractComponents(ChromeDriver driver) {
+	public AbstractComponents(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}

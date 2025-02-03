@@ -1,7 +1,6 @@
 package PageObjects;
 
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
@@ -11,34 +10,45 @@ import AbstractComponents.AbstractComponents;
 
 public class HomePage extends AbstractComponents {
 
-	WebDriver driver;
-	
-	@FindBy(name="q")
+	ChromeDriver driver;
+
+	@FindBy(name = "q")
 	WebElement searchBox;
-	
-	@FindBy(xpath="//span[text()='Filters']")
+
+	@FindBy(xpath = "//span[text()='Filters']")
 	WebElement filtersHeader;
-	
+
 	public HomePage(ChromeDriver driver) {
-		super (driver);
+		super(driver);
 		this.driver = driver;
-		PageFactory.initElements(driver,this);
+		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath="//div[contains(@class,'YBLJE4')]//span[contains(text(),'Flight')]")
+	@FindBy(xpath = "//div[contains(@class,'YBLJE4')]//span[contains(text(),'Flight')]")
 	WebElement flightBooking;
+	@FindBy(xpath="(//a[@class='_1TOQfO'])[1]")
+	WebElement userName; 
 	
-	public void landingPage() {
+	public String accountName() {
+		String name = userName.getAttribute("title");
+		return name;
+	}
+
+	public void dashBoard() {
 		driver.get("https://www.flipkart.com/");
 	}
 	
 	public void searchBox(String pdts) {
+		dashBoard();
+		visibilityOf(searchBox);
 		searchBox.clear();
-		searchBox.sendKeys(pdts,Keys.ENTER);
+		searchBox.sendKeys(pdts, Keys.ENTER);
 		visibilityOf(filtersHeader);
 	}
-	
+
 	public void flightBooking() {
+		dashBoard();
+		visibilityOf(flightBooking);
 		flightBooking.click();
 	}
 
