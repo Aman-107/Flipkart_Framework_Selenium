@@ -37,6 +37,7 @@ A robust automation testing framework for Flipkart e-commerce platform using Sel
 - ExtentReports
 - Apache POI (Excel handling)
 - Log4j Core
+- AutoIT software for uploading of external images
 
 ## Installation
 
