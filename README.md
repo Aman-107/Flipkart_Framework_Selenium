@@ -54,13 +54,13 @@ A robust automation testing framework for Flipkart e-commerce platform using Sel
 ## Configuration
 
 1. Set up your environment variables in "src/main/java/resources/GlobalData.properties":
-
+```
    browser=chrome
    baseUrl=https://www.flipkart.com/
    username=YOUR_FLIPKART_EMAIL
    password=YOUR_FLIPKART_PASSWORD
    headless=false (via jenkins)
-
+```
 2. For data-driven testing, add test data in "src/test/resources/testdata/TestData.xlsx"
  Note : Only code implemented, no such use cases.
 
@@ -81,7 +81,7 @@ mvn test -DsuiteXmlFile=testng.xml
 
 
 ## Directory Structure
-
+```
 Flipkart/  
 ├── src/  
 │   ├── main/  
@@ -140,7 +140,7 @@ Flipkart/
 ├── testng.xml                                    # TestNG test suite configurations  
 ├── README.md                                     # Project documentation  
 └── .gitignore                                    # Git ignore rules (e.g., target/, drivers/)   
-
+```
 ## Reports
 
 After test execution, find detailed HTML reports in:
