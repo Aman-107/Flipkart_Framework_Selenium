@@ -118,7 +118,7 @@ Flipkart/
 │   ├── test/                                     # Additional test suites (optional)  
 │       ├── java/ 
 │       │     ├── Cookies                         # Storing the session cookies
-│		  │	  │  ├── SaveCookies.java
+│       │     │  ├── SaveCookies.java
 │       │     │  └── LoadCookies.java
 │       │     │
 │       │     ├── Scrap                            
@@ -126,7 +126,7 @@ Flipkart/
 │       │     │
 │       │     ├── Test Cases                       
 │       │     │    ├── Basic.java                  # Without POM
-│       │	  │    └── Optimised_Code.java        # With POM
+│       │     │    └── Optimised_Code.java        # With POM
 │       │     │
 │       │     ├── Test Components                 # Building blocks of tests
 │                 ├── BaseTest.java               # Base classes for framework setup(WebDriver, TestNG annotations)
