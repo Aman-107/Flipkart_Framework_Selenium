@@ -7,6 +7,7 @@
 
 A robust automation testing framework for Flipkart e-commerce platform using Selenium WebDriver with Java and TestNG.
 
+
 ## Features
 
 - **Cross-browser Testing** (Chrome, Firefox, Edge)
@@ -20,6 +21,7 @@ A robust automation testing framework for Flipkart e-commerce platform using Sel
 - **Automated Screenshots** for failed tests
 - **Configuration Management** using properties files
 
+
 ## Prerequisites
 
 - Java JDK 11+
@@ -28,6 +30,7 @@ A robust automation testing framework for Flipkart e-commerce platform using Sel
 - Chrome/Firefox browsers
 - TestNG 7.6+
 - Internet Connection
+
 
 ## Dependencies
 
@@ -39,13 +42,14 @@ A robust automation testing framework for Flipkart e-commerce platform using Sel
 - Log4j Core
 - AutoIT software for uploading of external images
 
+
 ## Installation
 
 1. Clone the repository:
-
+```
    git clone https://github.com/Aman-107/Flipkart_Framework_Selenium.git
    cd Flipkart_Framework_Selenium/Flipkart
-
+```
 2. Install dependencies:
 
    mvn clean install
@@ -64,16 +68,17 @@ A robust automation testing framework for Flipkart e-commerce platform using Sel
 2. For data-driven testing, add test data in "src/test/resources/testdata/TestData.xlsx"
  Note : Only code implemented, no such use cases.
 
+
 ## Running Tests
 
 ### Using TestNG.xml
 1. Right-click on 'testng.xml'
 2. Select 'Run As' > 'TestNG Suite'
 
+
 ### Using Maven
 
 mvn test
-
 
 ### Run Specific Test Suite
 
@@ -141,6 +146,7 @@ Flipkart/
 ├── README.md                                     # Project documentation  
 └── .gitignore                                    # Git ignore rules (e.g., target/, drivers/)      
 ```
+
 ## Reports
 
 After test execution, find detailed HTML reports in:
@@ -156,9 +162,11 @@ Reports/index.html
 4. Push to the branch ('git push origin feature_branch')
 5. Open a Pull Request
 
+
 ## License
 
 Distributed under the MIT License. See 'LICENSE' for more information.
+
 
 ## Acknowledgments
 
