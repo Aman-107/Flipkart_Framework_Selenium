@@ -53,6 +53,7 @@ A robust automation testing framework for Flipkart e-commerce platform using Sel
 ## Configuration
 
 1. Set up your environment variables in "src/main/java/resources/GlobalData.properties":
+
    browser=chrome
    baseUrl=https://www.flipkart.com/
    username=YOUR_FLIPKART_EMAIL
@@ -111,17 +112,17 @@ Flipkart/
 │   ├── test/                                     # Additional test suites (optional)  
 │       ├── java/ 
 │       │     ├── Cookies                         # Storing the session cookies
-│		│	  │  ├── SaveCookies.java
-│		│	  │	 └── LoadCookies.java
-│       │    │
-│       │    ├── Scrap                            
-│       │    │   └── UseCases.java                # All the Use cases
-│       │    │
-│       │    ├── Test Cases                       
-│       │    │	  ├── Basic.java                  # Without POM
-│		│	 │    └── Optimised_Code.java         # With POM
-│       │    │
-│       │    ├── Test Components                  # Building blocks of tests
+│		  │	  │  ├── SaveCookies.java
+│		  │	  │  └── LoadCookies.java
+│       │     │
+│       │     ├── Scrap                            
+│       │     │   └── UseCases.java                # All the Use cases
+│       │     │
+│       │     ├── Test Cases                       
+│       │     │	  ├── Basic.java                 # Without POM
+│		  │	  │     └── Optimised_Code.java        # With POM
+│       │     │
+│       │     ├── Test Components                 # Building blocks of tests
 │                 ├── BaseTest.java               # Base classes for framework setup(WebDriver, TestNG annotations)
 │                 ├── Listeners.java              # Monitor test executions (Captures screenshots on failure)
 │                 └── Retry.java                  # Re-run the test on failure
