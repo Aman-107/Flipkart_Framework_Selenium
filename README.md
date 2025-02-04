@@ -113,17 +113,17 @@ Flipkart/
 │   ├── test/                                     # Additional test suites (optional)  
 │       ├── java/ 
 │       │     ├── Cookies                         # Storing the session cookies
-│		  │	  │  ├── SaveCookies.java
-│		  │	  │  └── LoadCookies.java
+│		  │	  │    ├── SaveCookies.java
+│		  │	  │	 └── LoadCookies.java
 │       │     │
 │       │     ├── Scrap                            
 │       │     │   └── UseCases.java                # All the Use cases
 │       │     │
 │       │     ├── Test Cases                       
-│       │     │	  ├── Basic.java                 # Without POM
-│		  │	  │     └── Optimised_Code.java        # With POM
+│       │     │	  ├── Basic.java                  # Without POM
+│		  │	  │     └── Optimised_Code.java         # With POM
 │       │     │
-│       │     ├── Test Components                 # Building blocks of tests
+│       │     ├── Test Components                  # Building blocks of tests
 │                 ├── BaseTest.java               # Base classes for framework setup(WebDriver, TestNG annotations)
 │                 ├── Listeners.java              # Monitor test executions (Captures screenshots on failure)
 │                 └── Retry.java                  # Re-run the test on failure
@@ -139,7 +139,7 @@ Flipkart/
 ├── pom.xml                                       # Maven dependencies and plugins  
 ├── testng.xml                                    # TestNG test suite configurations  
 ├── README.md                                     # Project documentation  
-└── .gitignore                                    # Git ignore rules (e.g., target/, drivers/)   
+└── .gitignore                                    # Git ignore rules (e.g., target/, drivers/)      
 ```
 ## Reports
 
