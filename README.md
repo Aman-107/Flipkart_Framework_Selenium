@@ -153,6 +153,7 @@ After test execution, find detailed HTML reports in:
 
 Reports/index.html
 
+![image](https://github.com/user-attachments/assets/f9833e6b-42e6-4ec7-b818-849150824d3d)
 
 ## Contributing
 
